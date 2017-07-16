@@ -1,0 +1,26 @@
+{
+  "name" : "minecraft-lifter",
+  "script" : "./app.js",
+  "_instances"  : 0,
+  "_exec_mode"  : "cluster",
+  "env": {
+    "NODE_ENV" : "development"
+  },
+  "env_staging": {
+    "NODE_ENV" : "staging"
+  },
+  "env_production": {
+    "NODE_ENV" : "production"
+  },
+  "watch": [
+    "api",
+    "config"
+  ],
+  "ignore_watch" : [
+    "node_modules",
+    ".tmp"
+  ],
+  "watch_options": {
+    "followSymlinks": false
+  }
+}

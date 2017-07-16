@@ -1,0 +1,3 @@
+<plugin-dynmap>
+
+</plugin-dynmap>
