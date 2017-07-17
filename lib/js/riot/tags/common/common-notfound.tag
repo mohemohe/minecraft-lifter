@@ -1,5 +1,4 @@
 <common-notfound>
-    <h3>API Not Found</h3>
+    <h5>API Not Found</h5>
     <hr>
-    <p>ページ指定が何かおかしいです。</p>
 </common-notfound>

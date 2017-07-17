@@ -1,8 +1,10 @@
+const cronService = require('../api/services/cronService');
+
 module.exports.cron = {
   checkMinecraft: {
-    schedule: '*/2 * * * * *',
+    schedule: '0 * * * * *',
     onTick: function() {
-      sails.log.debug(`${new Date()} start check Minecraft server status`);
+      cronService.checkServerAndShutdown();
     }
   }
 }

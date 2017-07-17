@@ -8,9 +8,6 @@
 const MinecraftService = require('../services/minecraftService');
 
 module.exports = {
-
-
-
   /**
    * `MinecraftController.status()`
    */
@@ -28,6 +25,5 @@ module.exports = {
     const status = await MinecraftService.minecraftQueryAsync(server, port);
     return res.json(status);
   },
-
 };
 

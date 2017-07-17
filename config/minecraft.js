@@ -1,14 +1,15 @@
 module.exports.minecraft = {
-  "_template": {
+  'archdev.local': {
     minecraft: {
-      server: "example.com",
+      server: 'mc.ghippos.net',
       port: 25565,
     },
-  },
-  "archdev.local": {
-    minecraft: {
-      server: "mc.ghippos.net",
-      port: 25565,
-    },
+    gce: {
+      projectId: 'minecraft-174003',
+      authJson: 'Minecraft-6b3a286872dd.json',
+      zone: 'asia-northeast1-a',
+      instanceId: 'minecraft-mc-ghippos-net',
+      shutdownMinutes: 15,
+    }
   },
 };

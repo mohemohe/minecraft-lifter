@@ -2,11 +2,9 @@
     <div>
         <common-header/>
         <main>
-            <div class="row">
-                <common-leftnav class="col s3"/>
+            <common-leftnav id="leftnav"/>
 
-                <route class="col s9"/>
-            </div>
+            <route id="content"/>
         </main>
         <common-footer/>
     </div>
@@ -18,13 +16,16 @@
             width: 100vw;
             min-height: 100vh;
             flex-direction: column;
+            overflow-x: hidden;
         }
         main {
+            display: flex;
             flex: 1 0 auto;
         }
 
-        main > div.row {
-            margin: 20px 0 !important;
+        #content {
+            flex: 1;
+            padding: 0 20px;
         }
     </style>
 
