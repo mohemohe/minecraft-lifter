@@ -1,4 +1,4 @@
 <plugin-dynmap>
-    <h5>Not support yet.</h5>
+    <h4>Not support yet.</h4>
     <hr>
 </plugin-dynmap>

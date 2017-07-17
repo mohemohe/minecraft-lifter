@@ -1,4 +1,4 @@
 <common-notfound>
-    <h5>API Not Found</h5>
+    <h4>API Not Found</h4>
     <hr>
 </common-notfound>
