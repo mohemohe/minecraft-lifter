@@ -160,6 +160,7 @@
         startUpdateMinecraftStatus() {
             if(self.updateMinecraftServerStatusHandler ===  null) {
                 self.updateMinecraftServerStatusHandler = setInterval(self.updateMinecraftServerStatus, 5000);
+                self.updateMinecraftServerStatus();
             }
         }
 
@@ -171,7 +172,6 @@
 
         this.on('mount', () => {
             $('.modal').modal();
-            self.updateMinecraftServerStatus();
             self.startUpdateMinecraftStatus();
         });
 
