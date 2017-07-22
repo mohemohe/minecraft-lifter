@@ -21,6 +21,7 @@
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
     "mcquery": "^0.2.6",
+    "node-fetch": "^1.7.1",
     "rc": "1.0.1",
     "sails": "~0.12.13",
     "sails-auth": "^2.1.3",
