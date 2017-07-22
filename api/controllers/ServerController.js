@@ -31,7 +31,18 @@ module.exports = {
   },
 
   /**
-   * `ServerController.power()`
+   * `ServerController.owner()`
+   */
+  owner: function (req, res) {
+    const config = sails.config.minecraft[req.headers.host];
+    return res.json({
+      success: true,
+      owner: config.gce.owner,
+    });
+  },
+
+  /**
+   * `ServerController.state()`
    */
   state: async function (req, res) {
     if(req.method.toLowerCase() !== 'post') {
@@ -64,6 +75,14 @@ module.exports = {
       }
       return res.json(response);
     }
+  },
+
+  price: async function (req, res) {
+    const config = sails.config.minecraft[req.headers.host];
+    let response = {};
+    const result = await GceService.getPriceAsync(config.gce.projectId, config.gce.authJson, config.gce.zone, config.gce.instanceId);
+    response = result;
+    return res.json(response);
   },
 };
 

@@ -32,7 +32,13 @@
             <h4>確認</h4>
             <p>
                 Minecraftインスタンスを起動します。<br>
-                インスタンスの起動を行うことにより、 $0.023 / hour の課金が <a href="https://twitter.com/mohemohe" target="_blank">@mohemohe</a> に発生します。<br>
+                インスタンスの起動を行うことにより、
+                    <span if={ serverPrice.success }> ${ serverPrice.price } / hour</a></span>
+                    <span if={ serverPrice === null || !serverPrice.success }>サーバー料金</span>
+                の課金が
+                    <span if={ serverOwner !== null && serverOwner.success }> <a href="{ serverOwner.owner.url }" target="_blank">{ serverOwner.owner.name }</a></span>
+                    <span if={ serverOwner === null || !serverOwner.success }>管理人</span>
+                に発生します。<br>
             </p>
 
             <p>
@@ -62,6 +68,8 @@
         self.updateMinecraftServerStatusHandler = null;
         self.status = null;
         self.overrideStatus = null;
+        self.serverPrice = null;
+        self.serverOwner = null;
 
         getCsrf() {
             return fetch(`${window.location.origin}/csrfToken`)
@@ -130,6 +138,32 @@
                     return { success: false };
                 }
                 return response.json();
+            })
+        }
+
+        getServerPrice() {
+            return fetch(`${window.location.origin}/server/price`).then(response => {
+                if(!response.ok) {
+                    Materialize.toast('サーバー価格の取得に失敗しました', 10 * 1000);
+                    return { success: false };
+                }
+                return response.json();
+            }).then(json => {
+                self.serverPrice = json;
+                self.update();
+            });
+        }
+
+        getServerOwner() {
+            return fetch(`${window.location.origin}/server/owner`).then(response => {
+                if(!response.ok) {
+                    Materialize.toast('サーバー管理人情報の取得に失敗しました', 10 * 1000);
+                    return { success: false };
+                }
+                return response.json();
+            }).then(json => {
+                self.serverOwner = json;
+                self.update();
             });
         }
 
@@ -160,6 +194,7 @@
         startUpdateMinecraftStatus() {
             if(self.updateMinecraftServerStatusHandler ===  null) {
                 self.updateMinecraftServerStatusHandler = setInterval(self.updateMinecraftServerStatus, 5000);
+                self.updateMinecraftServerStatus();
             }
         }
 
@@ -171,8 +206,9 @@
 
         this.on('mount', () => {
             $('.modal').modal();
-            self.updateMinecraftServerStatus();
             self.startUpdateMinecraftStatus();
+            self.getServerOwner();
+            self.getServerPrice();
         });
 
         this.on('unmount', () => {
