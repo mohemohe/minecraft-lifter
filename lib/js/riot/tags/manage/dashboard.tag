@@ -72,9 +72,13 @@
         self.serverOwner = null;
 
         getCsrf() {
-            return fetch(`${window.location.origin}/csrfToken`)
-            .then(response => { return response.json(); })
-            .then(json => { return json._csrf; });
+            return fetch(`${window.location.origin}/csrfToken`, {
+                credentials: 'include',
+            }).then(response => {
+                return response.json();
+            }).then(json => {
+                return json._csrf;
+            });
         }
 
         startInstance() {
@@ -132,7 +136,9 @@
         }
 
         getMinecraftServerStatus() {
-            return fetch(`${window.location.origin}/minecraft/status`).then(response => {
+            return fetch(`${window.location.origin}/minecraft/status`, {
+                credentials: 'include',
+            }).then(response => {
                 if(!response.ok) {
                     Materialize.toast('サーバー情報の取得に失敗しました', 10 * 1000);
                     return { success: false };
@@ -142,7 +148,9 @@
         }
 
         getServerPrice() {
-            return fetch(`${window.location.origin}/server/price`).then(response => {
+            return fetch(`${window.location.origin}/server/price`, {
+                credentials: 'include',
+            }).then(response => {
                 if(!response.ok) {
                     Materialize.toast('サーバー価格の取得に失敗しました', 10 * 1000);
                     return { success: false };
@@ -155,7 +163,9 @@
         }
 
         getServerOwner() {
-            return fetch(`${window.location.origin}/server/owner`).then(response => {
+            return fetch(`${window.location.origin}/server/owner`, {
+                credentials: 'include',
+            }).then(response => {
                 if(!response.ok) {
                     Materialize.toast('サーバー管理人情報の取得に失敗しました', 10 * 1000);
                     return { success: false };
